@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven' 
+        maven 'Maven'
     }
 
     stages {
@@ -24,14 +24,11 @@ pipeline {
             }
         }
 
-        stage('Run Application') {
+        stage('Show Build Output') {
             steps {
                 sh '''
                 echo "Listing target folder:"
                 ls -l target
-
-                echo "Running correct jar..."
-                java -jar target/MyMavenSeleniumApp01-1.0-SNAPSHOT.jar
                 '''
             }
         }
@@ -39,7 +36,7 @@ pipeline {
 
     post {
         success {
-            echo 'Build and execution successful!'
+            echo 'Build and test successful!'
         }
         failure {
             echo 'Build failed!'
